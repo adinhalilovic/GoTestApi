@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//Person - model for mock data
 type Person struct {
 	ID        string   `json:"id,omitempty"`
 	Firstname string   `json:"firstname,omitempty"`
@@ -15,6 +16,7 @@ type Person struct {
 	Address   *Address `json:"address,omitempty"`
 }
 
+//Address - model for mock data
 type Address struct {
 	City  string `json:"city,omitempty"`
 	State string `json:"state,omitempty"`
@@ -22,10 +24,12 @@ type Address struct {
 
 var people []Person
 
+//GetPeopleEndpoint - Endpoint for getting all people
 func GetPeopleEndpoint(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(people)
 }
 
+//GetPersonEndpoint - Endpoint for getting specific person
 func GetPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
 	for _, item := range people {
